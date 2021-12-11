@@ -15,6 +15,12 @@ class TestMorse(unittest.TestCase):
         morse=".---- ..--- ...-- "
         expected_output="123"
         self.assertEqual(morse,self.temp.coding(expected_output))
+    def test_morse_sentence(self):
+        morse=".- .-.. .-  -- .-  -.- --- - .- "
+        expected_output = "Ala ma kota"
+        self.assertEqual(morse, self.temp.coding(expected_output))
+
+
 
 
     def tearDown(self):
