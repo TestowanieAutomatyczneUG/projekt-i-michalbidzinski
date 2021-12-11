@@ -1,5 +1,6 @@
 import unittest
 from src.sample.Morse import  Morse
+import assertpy
 class TestMorse(unittest.TestCase):
     def setUp(self):
         self.temp = Morse()
@@ -19,6 +20,10 @@ class TestMorse(unittest.TestCase):
         morse=".- .-.. .-  -- .-  -.- --- - .- "
         expected_output = "Ala ma kota"
         self.assertEqual(morse, self.temp.coding(expected_output))
+
+    def test_morse_empty(self):
+        morse = ""
+        self.assertRaises(Exception, self.temp.coding, morse)
 
 
 
