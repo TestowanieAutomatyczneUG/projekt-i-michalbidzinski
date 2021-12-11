@@ -23,7 +23,8 @@ class TestMorse(unittest.TestCase):
 
     def test_morse_empty(self):
         morse = ""
-        self.assertRaises(Exception, self.temp.coding, morse)
+        expected_output = ""
+        self.assertEqual(morse, self.temp.coding(expected_output))
 
 
 
