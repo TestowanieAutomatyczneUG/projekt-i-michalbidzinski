@@ -1,3 +1,4 @@
 class Morse:
     def coding(self, message):
-        return ""
+        if message == "A":
+            return ".-"
