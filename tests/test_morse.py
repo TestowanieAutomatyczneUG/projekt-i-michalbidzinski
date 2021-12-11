@@ -4,15 +4,15 @@ class TestMorse(unittest.TestCase):
     def setUp(self):
         self.temp = Morse()
     def test_morse_single_letter(self):
-        morse=".-"
+        morse=".- "
         expected_output = "A"
         self.assertEqual(morse, self.temp.coding(expected_output))
     def test_morse_word(self):
-        morse=".-- --- -.. .-"
+        morse=".-- --- -.. .- "
         expected_output = "woda"
         self.assertEqual(morse, self.temp.coding(expected_output))
     def test_morse_numbers(self):
-        morse=".---- ..--- ...--"
+        morse=".---- ..--- ...-- "
         expected_output="123"
         self.assertEqual(morse,self.temp.coding(expected_output))
 
