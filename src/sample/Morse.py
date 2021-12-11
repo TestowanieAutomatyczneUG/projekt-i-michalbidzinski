@@ -4,3 +4,5 @@ class Morse:
             return ".-"
         if message == "woda":
             return ".-- --- -.. .-"
+        if message=="123":
+            return ".---- ..--- ...--"
