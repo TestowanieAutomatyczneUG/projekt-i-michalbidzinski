@@ -31,6 +31,12 @@ class TestMorse(unittest.TestCase):
         expected_output = ","
         self.assertEqual(morse, self.temp.coding(expected_output))
 
+    def test_morse_punctuation_marks_2(self):
+        morse = ".-... .----. .--.-. -.--.- -.--. ---... --..-- -...- -.-.-- .-.-.- -....- .-.-. .-..-. ..--.. -..-. "
+        expected_output = "&'@)(:,=!.-+\"?/"
+        self.assertEqual(morse, self.temp.coding(expected_output))
+
+
 
 
 
