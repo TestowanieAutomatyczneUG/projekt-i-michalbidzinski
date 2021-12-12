@@ -36,8 +36,8 @@ class TestMorse(unittest.TestCase):
         inputed_data = "&'@)(:,=!.-+\"?/"
         self.assertEqual(morse, self.temp.coding(inputed_data))
     def test_morse_with_polish_marks(self):
-        morse = '.-.- -.-.. ..-.. .-..- --.-- ---. ...-... --..-. --..- ...-...'
-        inputed_data = "ąćęłńóśźżś"
+        morse = '.-.- -.-.. ..-.. .-..- --.-- ---. ...-... '
+        inputed_data = "ĄĆĘŁŃÓŚ"
         self.assertEqual(morse, self.temp.coding(inputed_data))
 
 
