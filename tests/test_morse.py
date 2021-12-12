@@ -6,35 +6,40 @@ class TestMorse(unittest.TestCase):
         self.temp = Morse()
     def test_morse_single_letter(self):
         morse=".- "
-        expected_output = "A"
-        self.assertEqual(morse, self.temp.coding(expected_output))
+        inputed_data = "A"
+        self.assertEqual(morse, self.temp.coding(inputed_data))
     def test_morse_word(self):
         morse=".-- --- -.. .- "
-        expected_output = "woda"
-        self.assertEqual(morse, self.temp.coding(expected_output))
+        inputed_data = "woda"
+        self.assertEqual(morse, self.temp.coding(inputed_data))
     def test_morse_numbers(self):
         morse=".---- ..--- ...-- "
-        expected_output="123"
-        self.assertEqual(morse,self.temp.coding(expected_output))
+        inputed_data="123"
+        self.assertEqual(morse,self.temp.coding(inputed_data))
     def test_morse_sentence(self):
         morse=".- .-.. .-  -- .-  -.- --- - .- "
-        expected_output = "Ala ma kota"
-        self.assertEqual(morse, self.temp.coding(expected_output))
+        inputed_data = "Ala ma kota"
+        self.assertEqual(morse, self.temp.coding(inputed_data))
 
     def test_morse_empty(self):
         morse = ""
-        expected_output = ""
-        self.assertEqual(morse, self.temp.coding(expected_output))
+        inputed_data = ""
+        self.assertEqual(morse, self.temp.coding(inputed_data))
 
     def test_morse_punctuation_marks(self):
         morse = "--..-- "
-        expected_output = ","
-        self.assertEqual(morse, self.temp.coding(expected_output))
+        inputed_data = ","
+        self.assertEqual(morse, self.temp.coding(inputed_data))
 
     def test_morse_punctuation_marks_2(self):
         morse = ".-... .----. .--.-. -.--.- -.--. ---... --..-- -...- -.-.-- .-.-.- -....- .-.-. .-..-. ..--.. -..-. "
-        expected_output = "&'@)(:,=!.-+\"?/"
-        self.assertEqual(morse, self.temp.coding(expected_output))
+        inputed_data = "&'@)(:,=!.-+\"?/"
+        self.assertEqual(morse, self.temp.coding(inputed_data))
+    def test_morse_with_polish_marks(self):
+        morse = '.-.- -.-.. ..-.. .-..- --.-- ---. ...-... --..-. --..- ...-...'
+        inputed_data = "ąćęłńóśźżś"
+        self.assertEqual(morse, self.temp.coding(inputed_data))
+
 
 
 
