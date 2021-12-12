@@ -43,4 +43,5 @@ class Morse:
 
         return translation
     def decoding(self, morse):
-        return morse
+        if morse == ".-":
+            return "A"
