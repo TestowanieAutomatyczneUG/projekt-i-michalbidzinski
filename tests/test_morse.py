@@ -43,6 +43,11 @@ class TestMorse(unittest.TestCase):
         expected_output = "A"
         morse = ".-"
         assert_that(self.temp.decoding(morse)).is_equal_to(expected_output)
+
+    def test_morse_decoding_single_word(self):
+        expected_output = "ALIBABA"
+        morse = ".- .-.. .. -... .- -... .-"
+        assert_that(self.temp.decoding(morse)).is_equal_to(expected_output)
     def tearDown(self):
         self.temp = None
 
