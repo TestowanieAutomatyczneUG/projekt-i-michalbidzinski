@@ -1,6 +1,6 @@
 import unittest
 from src.sample.Morse import  Morse
-import assertpy
+from assertpy import assert_that
 class TestMorse(unittest.TestCase):
     def setUp(self):
         self.temp = Morse()
@@ -39,6 +39,10 @@ class TestMorse(unittest.TestCase):
         morse = '.-.- -.-.. ..-.. .-..- --.-- ---. ...-... '
         inputed_data = "ĄĆĘŁŃÓŚ"
         self.assertEqual(morse, self.temp.coding(inputed_data))
+    def test_morse_decoding_single_letter(self):
+        expected_output = "A"
+        morse = ".-"
+        assert_that(self.temp.decoding(morse)).is_equal_to(expected_output)
     def tearDown(self):
         self.temp = None
 
