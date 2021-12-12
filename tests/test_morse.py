@@ -39,13 +39,6 @@ class TestMorse(unittest.TestCase):
         morse = '.-.- -.-.. ..-.. .-..- --.-- ---. ...-... '
         inputed_data = "ĄĆĘŁŃÓŚ"
         self.assertEqual(morse, self.temp.coding(inputed_data))
-
-
-
-
-
-
-
     def tearDown(self):
         self.temp = None
 
