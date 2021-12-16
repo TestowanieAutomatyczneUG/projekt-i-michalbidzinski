@@ -39,6 +39,9 @@ class TestMorse(unittest.TestCase):
         morse = '.-.- -.-.. ..-.. .-..- --.-- ---. ...-... '
         inputed_data = "ĄĆĘŁŃÓŚ"
         self.assertEqual(morse, self.temp.coding(inputed_data))
+    # -------
+    # DECODING
+    # ----
     def test_morse_decoding_single_letter(self):
         expected_output = "A"
         morse = ".-"
@@ -47,6 +50,10 @@ class TestMorse(unittest.TestCase):
     def test_morse_decoding_single_word(self):
         expected_output = "ALIBABA"
         morse = ".- .-.. .. -... .- -... .-"
+        assert_that(self.temp.decoding(morse)).is_equal_to(expected_output)
+    def test_morse_decoding_sentence(self):
+        expected_output = "ALA MA KOTA"
+        morse = ".- .-.. .- / -- .- / -.- --- - .-"
         assert_that(self.temp.decoding(morse)).is_equal_to(expected_output)
     def tearDown(self):
         self.temp = None
