@@ -13,12 +13,12 @@ class TestMorse(unittest.TestCase):
         inputed_data = "woda"
         self.assertEqual(morse, self.temp.coding(inputed_data))
     def test_morse_numbers(self):
-        inputed_data = "1234567890"
+        inputed_data = "12345 67890"
         morse = ".---- ..--- ...-- ....- ..... -.... --... ---.. ----. ----- "
         self.assertEqual(morse,self.temp.coding(inputed_data))
     def test_morse_sentence(self):
-        morse=".- .-.. .-  -- .-  -.- --- - .- "
-        inputed_data = "Ala ma kota"
+        morse=".- .-.. .- -- .- -.- --- - .- "
+        inputed_data = "ala ma kota"
         self.assertEqual(morse, self.temp.coding(inputed_data))
 
     def test_morse_empty(self):
@@ -39,6 +39,26 @@ class TestMorse(unittest.TestCase):
         morse = '.-.- -.-.. ..-.. .-..- --.-- ---. ...-... '
         inputed_data = "ĄĆĘŁŃÓŚ"
         self.assertEqual(morse, self.temp.coding(inputed_data))
+
+    def test_morse_coding_arr(self):
+        inputed_data = []
+        assert_that(self.temp.coding).raises(Exception).when_called_with(inputed_data)
+    def test_morse_coding_obj(self):
+        inputed_data = {}
+        assert_that(self.temp.coding).raises(Exception).when_called_with(inputed_data)
+    def test_morse_coding_float(self):
+        inputed_data = 3.14
+        assert_that(self.temp.coding).raises(Exception).when_called_with(inputed_data)
+    def test_morse_coding_False(self):
+        inputed_data = False
+        assert_that(self.temp.coding).raises(Exception).when_called_with(inputed_data)
+    def test_morse_coding_True(self):
+        inputed_data = True
+        assert_that(self.temp.coding).raises(Exception).when_called_with(inputed_data)
+    def test_morse_coding_None(self):
+        inputed_data = None
+        assert_that(self.temp.coding).raises(Exception).when_called_with(inputed_data)
+
     # -------
     # DECODING
     # ----

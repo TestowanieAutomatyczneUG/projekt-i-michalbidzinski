@@ -35,11 +35,16 @@ class Morse:
 
     def coding(self, message):
         translation = ''
-        for letter in message:
-            if letter.upper() != ' ':
-                translation += self.MORSE_CODE[letter.upper()] + ' '
+
+        for letter in message.replace(" ", ""):
+            if letter.upper() in self.MORSE_CODE.keys():
+                if letter.upper() != ' ':
+                    translation += self.MORSE_CODE[letter.upper()] + ' '
+                else:
+                    translation += ' '
             else:
-                translation += ' '
+                raise Exception
+
 
         return translation
 
