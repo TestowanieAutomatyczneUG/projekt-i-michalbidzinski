@@ -55,6 +55,12 @@ class TestMorse(unittest.TestCase):
         expected_output = "ALA MA KOTA"
         morse = ".- .-.. .-   -- .-   -.-  --- - .-"
         assert_that(self.temp.decoding(morse)).is_equal_to(expected_output)
+    def test_morse_decoding_empty_morse(self):
+        morse = ""
+        assert_that(self.temp.decoding).raises(Exception).when_called_with(morse)
+    def test_morse_decoding_too_many_spaces(self):
+        morse = ".... . .-.. .-.. ---    .-- --- .-. .-.. -.."
+        assert_that(self.temp.decoding).raises(Exception).when_called_with(morse)
     def tearDown(self):
         self.temp = None
 
