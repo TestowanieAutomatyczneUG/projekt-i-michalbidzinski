@@ -74,6 +74,10 @@ class Morse:
                       "Ś": "...-..."
 
                       }
+        if morse == "":
+            raise Exception("Wprowadz kod morse")
+        if "    " in morse:
+            raise Exception("Za dużo spacji")
         translation = ""
         words = morse.split("   ")
         for morse_word in words:

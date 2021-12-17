@@ -53,7 +53,7 @@ class TestMorse(unittest.TestCase):
         assert_that(self.temp.decoding(morse)).is_equal_to(expected_output)
     def test_morse_decoding_sentence(self):
         expected_output = "ALA MA KOTA"
-        morse = ".- .-.. .- / -- .- / -.- --- - .-"
+        morse = ".- .-.. .-   -- .-   -.-  --- - .-"
         assert_that(self.temp.decoding(morse)).is_equal_to(expected_output)
     def tearDown(self):
         self.temp = None
