@@ -13,8 +13,8 @@ class TestMorse(unittest.TestCase):
         inputed_data = "woda"
         self.assertEqual(morse, self.temp.coding(inputed_data))
     def test_morse_numbers(self):
-        morse=".---- ..--- ...-- "
-        inputed_data="123"
+        inputed_data = "1234567890"
+        morse = ".---- ..--- ...-- ....- ..... -.... --... ---.. ----. ----- "
         self.assertEqual(morse,self.temp.coding(inputed_data))
     def test_morse_sentence(self):
         morse=".- .-.. .-  -- .-  -.- --- - .- "
@@ -59,12 +59,18 @@ class TestMorse(unittest.TestCase):
         morse = ".-... .----. .--.-. -.--.- -.--. ---... --..-- -...- -.-.-- .-.-.- -....- .-.-. .-..-. ..--.. -..-."
         expected_output = "&'@)(:, ,=!.-+\"?/"
         self.assertEqual(self.temp.decoding(morse), expected_output)
+    def test_morse_decoding_numbers(self):
+        morse = ".---- ..--- ...-- ....- ..... -.... --... ---.. ----. -----"
+        expected_output = "1234567890"
+        assert_that(self.temp.decoding(morse)).is_equal_to(expected_output)
+
     def test_morse_decoding_empty_morse(self):
         morse = ""
         assert_that(self.temp.decoding).raises(Exception).when_called_with(morse)
     def test_morse_decoding_too_many_spaces(self):
         morse = ".... . .-.. .-.. ---    .-- --- .-. .-.. -.."
         assert_that(self.temp.decoding).raises(Exception).when_called_with(morse)
+
     def tearDown(self):
         self.temp = None
 
