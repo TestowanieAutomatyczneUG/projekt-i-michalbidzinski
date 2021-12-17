@@ -1,6 +1,6 @@
 class Morse:
-    def coding(self, message):
-        MORSE_CODE = {'A': '.-', 'B': '-...',
+    def __init__(self):
+        self.MORSE_CODE = {'A': '.-', 'B': '-...',
                       'C': '-.-.', 'D': '-..', 'E': '.',
                       'F': '..-.', 'G': '--.', 'H': '....',
                       'I': '..', 'J': '.---', 'K': '-.-',
@@ -32,48 +32,19 @@ class Morse:
                       "Ś": "...-..."
 
                       }
+
+    def coding(self, message):
         translation = ''
         for letter in message:
             if letter.upper() != ' ':
-                translation += MORSE_CODE[letter.upper()] + ' '
+                translation += self.MORSE_CODE[letter.upper()] + ' '
             else:
                 translation += ' '
 
         return translation
 
     def decoding(self, morse):
-        MORSE_CODE = {'A': '.-', 'B': '-...',
-                      'C': '-.-.', 'D': '-..', 'E': '.',
-                      'F': '..-.', 'G': '--.', 'H': '....',
-                      'I': '..', 'J': '.---', 'K': '-.-',
-                      'L': '.-..', 'M': '--', 'N': '-.',
-                      'O': '---', 'P': '.--.', 'Q': '--.-',
-                      'R': '.-.', 'S': '...', 'T': '-',
-                      'U': '..-', 'V': '...-', 'W': '.--',
-                      'X': '-..-', 'Y': '-.--', 'Z': '--..',
-                      '1': '.----', '2': '..---', '3': '...--',
-                      '4': '....-', '5': '.....', '6': '-....',
-                      '7': '--...', '8': '---..', '9': '----.',
-                      '0': '-----', ', ': '--..--', '.': '.-.-.-',
-                      '?': '..--..', '/': '-..-.', '-': '-....-',
-                      '(': '-.--.', ')': '-.--.-', "&": ".-...",
-                      "'": ".----.",
-                      "@": ".--.-.",
-                      ":": "---...",
-                      ",": "--..--",
-                      "=": "-...-",
-                      "!": "-.-.--",
-                      "+": ".-.-.",
-                      '"': ".-..-.",
-                      'Ą': ".-.-",
-                      "Ć": "-.-..",
-                      "Ę": "..-..",
-                      "Ł": ".-..-",
-                      "Ń": "--.--",
-                      "Ó": "---.",
-                      "Ś": "...-..."
 
-                      }
         if morse == "":
             raise Exception("Wprowadz kod morse")
         if "    " in morse:
@@ -83,7 +54,7 @@ class Morse:
         for morse_word in words:
             chars = morse_word.split(" ")
             for char in chars:
-                for k, v in MORSE_CODE.items():
+                for k, v in self.MORSE_CODE.items():
                     if char == v:
                         translation += k
             translation += " "
