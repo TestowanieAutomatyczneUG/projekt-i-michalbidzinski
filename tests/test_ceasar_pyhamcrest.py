@@ -22,6 +22,11 @@ class TestCeasar(unittest.TestCase):
         assert_that(self.temp.encrypt('hello world'), equal_to('khoor zruog'))
     def test_ceasar_sentence_2(self):
         assert_that(self.temp.encrypt('ala ma kota'), equal_to('dod pd nrwd'))
+    def test_ceasar_with_multiple_spaces(self):
+        assert_that(self.temp.encrypt('ala     ma   kota'), equal_to('dod     pd   nrwd'))
+    def test_ceasar_not_in_alphabet(self):
+        assert_that(calling(self.temp.encrypt).with_args('2'), raises(Exception))
+
 
 
 
