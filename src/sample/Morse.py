@@ -47,6 +47,11 @@ class Morse:
     def decoding(self, morse):
         if morse == "":
             raise Exception
+        morse_splitted = morse.split(' ')
+        if morse_splitted.count('') % 4 != 0:
+            raise Exception
+
+
         translation = ""
         words = morse.split("   ")
 
