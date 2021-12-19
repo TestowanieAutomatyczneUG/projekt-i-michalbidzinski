@@ -4,18 +4,21 @@ class Ceasar:
     def encrypt(self, text):
         cipher = ''
         for i in text:
-            if i.isupper():
+
+            if i.isupper() and  i != ' ':
                 if self.alphabet.index(i.lower()) >= 23:
                     index = self.alphabet.index(i.lower()) - 3
                     cipher += (self.alphabet[index]).upper()
                 else:
                     index = self.alphabet.index(i.lower()) + 3
                     cipher += (self.alphabet[index]).upper()
+            elif i.islower() and i != ' ':
+                if self.alphabet.index(i.lower()) >= 23:
+                    index = self.alphabet.index(i.lower()) - 3
+                    cipher += (self.alphabet[index])
+                else:
+                    index = self.alphabet.index(i.lower()) + 3
+                    cipher += (self.alphabet[index])
             else:
-                if self.alphabet.index(i.lower()) >= 23:
-                    index = self.alphabet.index(i.lower()) - 3
-                    cipher += (self.alphabet[index])
-                else:
-                    index = self.alphabet.index(i.lower()) + 3
-                    cipher += (self.alphabet[index])
+                cipher += ' '
         return cipher

@@ -18,8 +18,11 @@ class TestCeasar(unittest.TestCase):
         assert_that(self.temp.encrypt('ABCDEFGHIJKLMNOPQRSTUVWXYZ'), equal_to('DEFGHIJKLMNOPQRSTUVWXYZUVW'))
     def test_ceasar_whole_alphabet_lowercase(self):
         assert_that(self.temp.encrypt('abcdefghijklmnopqrstuvxyz'), equal_to('defghijklmnopqrstuvwxyuvw'))
-    def test_ceaasar_sentence(self):
+    def test_ceasar_sentence(self):
         assert_that(self.temp.encrypt('hello world'), equal_to('khoor zruog'))
+    def test_ceasar_sentence_2(self):
+        assert_that(self.temp.encrypt('ala ma kota'), equal_to('dod pd nrwd'))
+
 
 
 
