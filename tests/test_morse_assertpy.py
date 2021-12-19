@@ -84,6 +84,7 @@ class TestMorse(unittest.TestCase):
     # -------
     # DECODING
     # ----
+
     def test_morse_decoding_single_letter(self):
         expected_output = "A"
         morse = ".-"
@@ -98,6 +99,7 @@ class TestMorse(unittest.TestCase):
         expected_output = "ALA MA"
         morse = ".- .-.. .-     -- .-"
         assert_that(self.temp.decoding(morse)).is_equal_to(expected_output)
+
     def test_morse_decoding_sentence_2(self):
         expected_output = "MAMA MNIE BARDZO LUBI"
         morse = "-- .- -- .-     -- -. .. .     -... .- .-. -.. --.. ---     .-.. ..- -... .."
@@ -125,15 +127,19 @@ class TestMorse(unittest.TestCase):
 
     def test_morse_decoding_False(self):
         self.assertRaises(Exception, self.temp.decoding, False)
+
     def test_morse_decoding_float(self):
         self.assertRaises(Exception, self.temp.decoding, 3.14)
+
     def test_morse_decoding_int(self):
         self.assertRaises(Exception, self.temp.decoding, 3)
 
     def test_morse_decoding_empty_string(self):
         self.assertRaises(Exception, self.temp.decoding, "")
+
     def test_morse_decoding_empty_normal_alpahbet(self):
         self.assertRaises(Exception, self.temp.decoding, "hello world")
+
     def test_morse_decoding_empty_normal_alpahbet_2(self):
         self.assertRaises(Exception, self.temp.decoding, "abcd?")
 
@@ -149,9 +155,38 @@ class TestMorse(unittest.TestCase):
     def test_morse_decoding_found_4_spaces_in_morse(self):
         assert_that(self.temp.decoding).raises(Exception).when_called_with(
             ".- .-.. .-    -- .-")
+
     def test_morse_decoding_found_4_spaces_in_morse_2(self):
         assert_that(self.temp.decoding).raises(Exception).when_called_with(
             "-- .- -- .-    -- -. .. .    -... .- .-. -.. --.. ---    .-.. ..- -... ..")
+
+    # rózne asercje w assertpy
+    def test_morse_decoding_is_insance_of(self):
+        morse = ".-"
+        assert_that(self.temp.decoding(morse)).is_instance_of(str)
+
+    def test_morse_is_lenght(self):
+        morse = ".---- ..--- ...-- ....- ..... -.... --... ---.. ----. -----"
+        expected_output = "1234567890"
+        assert_that(self.temp.decoding(morse)).is_length(len(expected_output))
+
+    def test_morse_is_not_equal_to(self):
+        morse = ".---- ..--- ...-- ....- ..... -.... --... ---.. ----. -----"
+        # expected_output = "1234567890"
+        assert_that(self.temp.decoding(morse)).is_not_equal_to("123")
+
+    def test_morse_is_not_none(self):
+        morse = ".---- ..--- ...-- ....- ..... -.... --... ---.. ----. -----"
+        assert_that(self.temp.decoding(morse)).is_not_none()
+
+    def test_morse_contains(self):
+        morse = ".---- ..--- ...-- ....- ..... -.... --... ---.. ----. -----"
+        # expected_output = "1234567890"
+        assert_that(self.temp.decoding(morse)).contains("123")
+
+    def test_morse_is_empty(self):
+        morse = ""
+        assert_that(self.temp.coding(morse)).is_empty()
 
     def tearDown(self):
         self.temp = None
