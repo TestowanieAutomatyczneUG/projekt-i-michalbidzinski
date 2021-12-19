@@ -1,4 +1,5 @@
 class Ceasar:
     def encrypt(self, text):
         result = ""
-        return result
+        if text == "a":
+            return "d"

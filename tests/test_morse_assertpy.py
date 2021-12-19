@@ -1,5 +1,6 @@
+
 import unittest
-from src.sample.Morse import Morse
+from src.sample.Morse import *
 from assertpy import assert_that
 
 
