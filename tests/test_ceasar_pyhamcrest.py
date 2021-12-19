@@ -6,3 +6,5 @@ class TestCeasar(unittest.TestCase):
         self.temp = Ceasar()
     def test_ceasar_letter(self):
         assert_that(self.temp.encrypt('a'), equal_to('d'))
+    def test_ceasar_word(self):
+        assert_that(self.temp.encrypt('VENI'), equal_to('YHQL'))
