@@ -5,9 +5,17 @@ class Ceasar:
         cipher = ''
         for i in text:
             if i.isupper():
-                index = self.alphabet.index(i.lower()) + 3
-                cipher += (self.alphabet[index]).upper()
+                if self.alphabet.index(i.lower()) >= 23:
+                    index = self.alphabet.index(i.lower()) - 3
+                    cipher += (self.alphabet[index]).upper()
+                else:
+                    index = self.alphabet.index(i.lower()) + 3
+                    cipher += (self.alphabet[index]).upper()
             else:
-                index = self.alphabet.index(i.lower()) + 3
-                cipher += (self.alphabet[index])
+                if self.alphabet.index(i.lower()) >= 23:
+                    index = self.alphabet.index(i.lower()) - 3
+                    cipher += (self.alphabet[index])
+                else:
+                    index = self.alphabet.index(i.lower()) + 3
+                    cipher += (self.alphabet[index])
         return cipher
