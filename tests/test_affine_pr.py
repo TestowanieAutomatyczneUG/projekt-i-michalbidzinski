@@ -51,10 +51,16 @@ class Affine_test_parameterized(unittest.TestCase):
     def test_affine_wrong_text_provided(self, text, a, b):
         self.assertRaises(Exception, self.temp.affine_encrpyt, text, a, b)
     @parameterized.expand([
-        ('hello world', -3, 12),
+        ('hello world', 'x', 12),
+        ('witaj swiecie', 'd', 12),
         ('witaj swiecie', -3, 12),
-        ('WESOLYCH SWIAT', -3, 12),
-        ('ala ma kota kot ma ALE', -3, 12),
+        ('witaj swiecie', [], 12),
+        ('witaj swiecie', 3, 'x'),
+        ('witaj swiecie', 3, 'd'),
+        ('witaj swiecie', 3, -3),
+        ('witaj swiecie', 3, []),
+        ('witaj swiecie', -3, -3),
+        ('witaj swiecie', -1, -2),
     ])
     def test_affine_wrong_a_or_b(self, text, a, b):
         self.assertRaises(Exception, self.temp.affine_encrpyt, text, a, b)

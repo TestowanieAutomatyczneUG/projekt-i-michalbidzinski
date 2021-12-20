@@ -5,6 +5,8 @@ class Affine:
 
     def affine_encrpyt(self, text ,a, b ):
         cipher = ''
+        if not isinstance(a, int) or not isinstance(b, int) or a < 0 or b < 0:
+            raise Exception
 
         if not (isinstance(text, str)):
             raise Exception
