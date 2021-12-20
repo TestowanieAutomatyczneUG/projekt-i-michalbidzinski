@@ -1,6 +1,8 @@
 import unittest
 from parameterized import *
 from src.sample.Affine import *
+
+
 class Affine_test_parameterized(unittest.TestCase):
     def setUp(self):
         self.temp = Affine()
@@ -10,10 +12,9 @@ class Affine_test_parameterized(unittest.TestCase):
         ('VINI', 3, 32, 'RETE'),
         ('dici', 2, 16, 'wgug'),
         ('IL', 5, 15, 'DS'),
-        ('DUCE',25 ,25, 'WFXV' ),
+        ('DUCE', 25, 25, 'WFXV'),
         ('ABCDEFGHIJKLMNOPQRSTUVWXYZ', 3, 12, 'MPSVYBEHKNQTWZCFILORUXADGJ'),
     ])
-
     def test_affine_words(self, text, a, b, cipher):
         self.assertEqual(self.temp.affine_encrpyt(text, a, b), cipher)
 
@@ -27,6 +28,7 @@ class Affine_test_parameterized(unittest.TestCase):
     ])
     def test_affine_single_letters(self, text, a, b, cipher):
         self.assertEqual(self.temp.affine_encrpyt(text, a, b), cipher)
+
     @parameterized.expand([
         ('hello world', 3, 12, 'hyttc acltv'),
         ('witaj swiecie', 3, 12, 'akrmn oakysky'),
@@ -37,16 +39,23 @@ class Affine_test_parameterized(unittest.TestCase):
         self.assertEqual(self.temp.affine_encrpyt(text, a, b), cipher)
 
     @parameterized.expand([
-        ('123', 3, 12, Exception),
-        (',&!2@;.xxxz', 3, 12, 'akrmn oakysky'),
-        (1, 3, 12, 'AYOCTGSH OAKMR'),
-        (str, 3, 12, 'mtm wm qcrm qcr wm MTY'),
-        ([], 3, 12, 'mtm wm qcrm qcr wm MTY'),
-        ({}, 3, 12, 'mtm wm qcrm qcr wm MTY'),
-        (None, 3, 12, 'mtm wm qcrm qcr wm MTY'),
-        (True, 3, 12, 'mtm wm qcrm qcr wm MTY'),
+        ('123', 3, 12),
+        (',&!2@;.xxxz', 3, 12),
+        (1, 3, 12),
+        (str, 3, 12),
+        ([], 3, 12),
+        ({}, 3, 12),
+        (None, 3, 12 ),
+        (True, 3, 12 ),
     ])
-    def test_affine_wrong_text_provided(self, text, a, b, cipher):
-        self.assertRaises(Exception, self.temp.affine_encrpyt, text, a,b,cipher)
-
+    def test_affine_wrong_text_provided(self, text, a, b):
+        self.assertRaises(Exception, self.temp.affine_encrpyt, text, a, b)
+    @parameterized.expand([
+        ('hello world', -3, 12),
+        ('witaj swiecie', -3, 12),
+        ('WESOLYCH SWIAT', -3, 12),
+        ('ala ma kota kot ma ALE', -3, 12),
+    ])
+    def test_affine_wrong_a_or_b(self, text, a, b):
+        self.assertRaises(Exception, self.temp.affine_encrpyt, text, a, b)
 

@@ -33,6 +33,7 @@ class Ceasar:
         decrypted_text = ''
         if not (isinstance(text, str)):
             raise Exception
+
         for i in text:
             if i.lower() not in self.alphabet and i != ' ':
                 raise Exception
