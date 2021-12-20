@@ -7,10 +7,12 @@ class Affine_test_parameterized(unittest.TestCase):
 
     @parameterized.expand([
         ('veni', 3, 12, 'xyzk'),
-        ('xyz', 3, 32, 'xad'),
-        ('XYZ', 3, 32, 'XAD')
+        ('VINI', 3, 32, 'RETE'),
+        ('dici', 2, 16, 'wgug'),
+        ('IL', 5, 15, 'DS'),
+        ('DUCE',25 ,25, 'WFXV' )
     ])
 
-    def test_affine_3_12_VENI(self, text, a, b, cipher):
+    def test_affine_words(self, text, a, b, cipher):
         self.assertEqual(self.temp.affine_encrpyt(text, a, b), cipher)
 
