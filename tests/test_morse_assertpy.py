@@ -3,7 +3,7 @@ import unittest
 from src.sample.Morse import *
 from assertpy import *
 # własny matcher
-def check_if_morse_has_more_dots_than_dashes(self):
+def check_if_morse_has_more_dots_than_dashes(self, text):
     if self.val.count(".") > self.val.count("-"):
         return self
     return  self.error("Jest więcej lub porówno kropek co kresek w kodzie morsa")
@@ -16,9 +16,13 @@ class TestMorse(unittest.TestCase):
     def setUp(self):
         self.temp = Morse()
     # własny matcher
-    def test_Morse_coding_check_result_length_higher_and_string_and_contain_spaces(self):
+    def test_morse_check_if_morse_has_more_dots_than_dashes(self):
         inputed_data = 'hej'
         assert_that(self.temp.coding(inputed_data)).check_if_morse_has_more_dots_than_dashes(inputed_data)
+    def test_morse_hej(self):
+        morse = ".... . .--- "
+        inputed_data = "hej"
+        self.assertEqual(morse, self.temp.coding(inputed_data))
 
     ## main program
     def test_morse_single_letter(self):
