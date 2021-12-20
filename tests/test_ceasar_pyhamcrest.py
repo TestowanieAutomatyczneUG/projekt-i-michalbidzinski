@@ -58,6 +58,7 @@ class TestCeasar(unittest.TestCase):
     def test_ceasar_with_multiple_spaces(self):
         assert_that(self.temp.encrypt('ala     ma   kota'), equal_to('dod     pd   nrwd'))
 
+
     # ENCRPYT exceptions
     def test_ceasar_not_in_alphabet(self):
         assert_that(calling(self.temp.encrypt).with_args('2'), raises(Exception))
