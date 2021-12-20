@@ -71,6 +71,8 @@ class TestCeasar(unittest.TestCase):
         assert_that(self.temp.decrypt('ala ma kota'), equal_to('xix jx hlqx'))
     def test_ceasar_decrypt_with_multiple_spaces(self):
         assert_that(self.temp.decrypt('ala     ma   kota'), equal_to('xix     jx   hlqx'))
+    def test_ceasar_decypt_empty(self):
+        assert_that(self.temp.decrypt(''), equal_to(''))
     # DECRYPT exceptions
     def test_ceasar_decrypt_not_in_alphabet(self):
         assert_that(calling(self.temp.decrypt).with_args('2'), raises(Exception))
