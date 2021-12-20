@@ -11,13 +11,13 @@ class TestCeasar(unittest.TestCase):
     def test_ceasar_word_lowercase(self):
         assert_that(self.temp.encrypt('veni'), equal_to('yhql'))
     def test_ceasar_last_3_letters(self):
-        assert_that(self.temp.encrypt('XYZ'), equal_to('UVW'))
+        assert_that(self.temp.encrypt('XYZ'), equal_to('ABC'))
     def test_ceasar_last_3_letters_lowercase(self):
-        assert_that(self.temp.encrypt('xyz'), equal_to('uvw'))
+        assert_that(self.temp.encrypt('xyz'), equal_to('abc'))
     def test_ceasar_whole_alphabet(self):
-        assert_that(self.temp.encrypt('ABCDEFGHIJKLMNOPQRSTUVWXYZ'), equal_to('DEFGHIJKLMNOPQRSTUVWXYZUVW'))
+        assert_that(self.temp.encrypt('ABCDEFGHIJKLMNOPQRSTUVWXYZ'), equal_to('DEFGHIJKLMNOPQRSTUVWXYZABC'))
     def test_ceasar_whole_alphabet_lowercase(self):
-        assert_that(self.temp.encrypt('abcdefghijklmnopqrstuvxyz'), equal_to('defghijklmnopqrstuvwxyuvw'))
+        assert_that(self.temp.encrypt('abcdefghijklmnopqrstuvxyz'), equal_to('defghijklmnopqrstuvwxyabc'))
     def test_ceasar_sentence(self):
         assert_that(self.temp.encrypt('hello world'), equal_to('khoor zruog'))
     def test_ceasar_sentence_2(self):
@@ -26,7 +26,23 @@ class TestCeasar(unittest.TestCase):
         assert_that(self.temp.encrypt('ala     ma   kota'), equal_to('dod     pd   nrwd'))
     def test_ceasar_not_in_alphabet(self):
         assert_that(calling(self.temp.encrypt).with_args('2'), raises(Exception))
+    def test_ceasar_None(self):
+        assert_that(calling(self.temp.encrypt).with_args(None), raises(Exception))
+    def test_ceasar_True(self):
+        assert_that(calling(self.temp.encrypt).with_args(True), raises(Exception))
+    def test_ceasar_False(self):
+        assert_that(calling(self.temp.encrypt).with_args(False), raises(Exception))
+    def test_ceasar_arr(self):
+        assert_that(calling(self.temp.encrypt).with_args([]), raises(Exception))
 
+    def test_ceasar_obj(self):
+        assert_that(calling(self.temp.encrypt).with_args({}), raises(Exception))
+
+    def test_ceasar_int(self):
+        assert_that(calling(self.temp.encrypt).with_args(3), raises(Exception))
+
+    def test_ceasar_float(self):
+        assert_that(calling(self.temp.encrypt).with_args(3.14), raises(Exception))
 
 
 
