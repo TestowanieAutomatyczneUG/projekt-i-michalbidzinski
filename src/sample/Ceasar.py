@@ -8,7 +8,7 @@ class Ceasar:
         if not (isinstance(text, str)):
             raise Exception
         for i in text:
-            if i.lower()  not in self.alphabet and i != ' ':
+            if i.lower() not in self.alphabet and i != ' ':
                 raise Exception
 
             if i.isupper() and i != ' ':
@@ -55,4 +55,3 @@ class Ceasar:
             else:
                 decrypted_text += ' '
         return decrypted_text
-

@@ -1,4 +1,9 @@
 [
-	["veni", "yhql"]
+	["veni", "yhql"],
+	["VENI", "YHQL"],
+	["XYZ", "ABC"],
+	["ABCDEFGHIJKLMNOPQRSTUVWXYZ", "DEFGHIJKLMNOPQRSTUVWXYZABC"],
+	["hello world", "khoor zruog"],
+	["ala     ma   kota", "dod     pd   nrwd"]
 
 ]
