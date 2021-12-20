@@ -27,4 +27,10 @@ class Affine_test_parameterized(unittest.TestCase):
     ])
     def test_affine_single_letters(self, text, a, b, cipher):
         self.assertEqual(self.temp.affine_encrpyt(text, a, b), cipher)
+    @parameterized.expand([
+        ('hello world', 3, 12, 'hyttc acltv'),
+    ])
+    def test_affine_sentences(self, text, a, b, cipher):
+        self.assertEqual(self.temp.affine_encrpyt(text, a, b), cipher)
+
 
