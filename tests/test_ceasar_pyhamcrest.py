@@ -1,39 +1,76 @@
 import unittest
 from hamcrest import *
+from assertpy import add_extension, assert_that
 from src.sample.Ceasar import Ceasar
+
+
+# wlasny matcher  sprawdzajacy czy input jest stringiem i sklada sie z litr alfabetu
+def check_if_input_is_a_string_and_contains_alpha_letters(self, tekst):
+    if type(self.val) == str:
+        if (self.val).isalpha():
+            return self.val
+        else:
+            return self.error("Nie składa sie tylko z  liter alfabetu")
+    else:
+        return self.error("Nie jest nstringiem")
+
+
+add_extension(check_if_input_is_a_string_and_contains_alpha_letters)
+
+
 class TestCeasar(unittest.TestCase):
     def setUp(self):
         self.temp = Ceasar()
+
+    # wlasny matcher
+    def test_ceasar_check_if_input_is_a_string_and_contains_alpha_letters(self):
+        input = 'hej'
+        assert_that(self.temp.encrypt(input)).check_if_input_is_a_string_and_contains_alpha_letters(input)
+
     # ENCRPYT
     def test_ceasar_letter(self):
         assert_that(self.temp.encrypt('a'), equal_to('d'))
+
     def test_ceasar_word(self):
         assert_that(self.temp.encrypt('VENI'), equal_to('YHQL'))
+
     def test_ceasar_word_lowercase(self):
         assert_that(self.temp.encrypt('veni'), equal_to('yhql'))
+
     def test_ceasar_last_3_letters(self):
         assert_that(self.temp.encrypt('XYZ'), equal_to('ABC'))
+
     def test_ceasar_last_3_letters_lowercase(self):
         assert_that(self.temp.encrypt('xyz'), equal_to('abc'))
+
     def test_ceasar_whole_alphabet(self):
         assert_that(self.temp.encrypt('ABCDEFGHIJKLMNOPQRSTUVWXYZ'), equal_to('DEFGHIJKLMNOPQRSTUVWXYZABC'))
+
     def test_ceasar_whole_alphabet_lowercase(self):
         assert_that(self.temp.encrypt('abcdefghijklmnopqrstuvxyz'), equal_to('defghijklmnopqrstuvwxyabc'))
+
     def test_ceasar_sentence(self):
         assert_that(self.temp.encrypt('hello world'), equal_to('khoor zruog'))
+
     def test_ceasar_sentence_2(self):
         assert_that(self.temp.encrypt('ala ma kota'), equal_to('dod pd nrwd'))
+
     def test_ceasar_with_multiple_spaces(self):
         assert_that(self.temp.encrypt('ala     ma   kota'), equal_to('dod     pd   nrwd'))
+
     # ENCRPYT exceptions
     def test_ceasar_not_in_alphabet(self):
         assert_that(calling(self.temp.encrypt).with_args('2'), raises(Exception))
+
     def test_ceasar_None(self):
         assert_that(calling(self.temp.encrypt).with_args(None), raises(Exception))
+
     def test_ceasar_True(self):
         assert_that(calling(self.temp.encrypt).with_args(True), raises(Exception))
+
     def test_ceasar_False(self):
         assert_that(calling(self.temp.encrypt).with_args(False), raises(Exception))
+
     def test_ceasar_arr(self):
         assert_that(calling(self.temp.encrypt).with_args([]), raises(Exception))
 
@@ -45,6 +82,7 @@ class TestCeasar(unittest.TestCase):
 
     def test_ceasar_float(self):
         assert_that(calling(self.temp.encrypt).with_args(3.14), raises(Exception))
+
     # DECRYPT
     def test_ceasar_decrypt_letter(self):
         assert_that(self.temp.decrypt('a'), equal_to('x'))
@@ -63,16 +101,22 @@ class TestCeasar(unittest.TestCase):
 
     def test_ceasar_decrypt_whole_alphabet(self):
         assert_that(self.temp.decrypt('ABCDEFGHIJKLMNOPQRSTUVWXYZ'), equal_to('XYZABCDEFGHIJKLMNOPQRSTUVW'))
+
     def test_ceasar_decrypt_whole_alphabet_lowercase(self):
         assert_that(self.temp.decrypt('abcdefghijklmnopqrstuvxyz'), equal_to('xyzabcdefghijklmnopqrsuvw'))
+
     def test_ceasar_decrypt_sentence(self):
         assert_that(self.temp.decrypt('hello world'), equal_to('ebiil tloia'))
+
     def test_ceasar_decrypt_sentence_2(self):
         assert_that(self.temp.decrypt('ala ma kota'), equal_to('xix jx hlqx'))
+
     def test_ceasar_decrypt_with_multiple_spaces(self):
         assert_that(self.temp.decrypt('ala     ma   kota'), equal_to('xix     jx   hlqx'))
+
     def test_ceasar_decypt_empty(self):
         assert_that(self.temp.decrypt(''), equal_to(''))
+
     # DECRYPT exceptions
     def test_ceasar_decrypt_not_in_alphabet(self):
         assert_that(calling(self.temp.decrypt).with_args('2'), raises(Exception))
@@ -97,26 +141,28 @@ class TestCeasar(unittest.TestCase):
 
     def test_ceasar_decrypt_float(self):
         assert_that(calling(self.temp.decrypt).with_args(3.14), raises(Exception))
+
     # użycie róznych matcherów z pyhamcresta
     def test_ceasar_has_length(self):
         assert_that(self.temp.decrypt('abc'), has_length(3))
+
     def test_ceasar_has_string(self):
         assert_that(self.temp.decrypt('abc'), has_string('xyz'))
+
     def test_ceasar_constains_string(self):
         assert_that(self.temp.decrypt('abc'), contains_string('x'))
+
     def test_ceasar_ends_with(self):
         assert_that(self.temp.decrypt('abc'), ends_with('z'))
+
     def test_ceasar_starts_with(self):
         assert_that(self.temp.decrypt('abc'), starts_with('x'))
 
     def test_ceasar_string_contains_in_order(self):
         assert_that(self.temp.decrypt('abcdefgh'), string_contains_in_order('xyz'))
+
     def test_ceasar_equal_to_ignoring_case(self):
         assert_that(self.temp.decrypt('abc'), equal_to_ignoring_case('XYZ'))
+
     def test_ceasar_instance_of(self):
         assert_that(self.temp.decrypt('abc'), instance_of(str))
-
-
-
-
-
