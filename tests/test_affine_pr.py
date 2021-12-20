@@ -7,7 +7,8 @@ class Affine_test_parameterized(unittest.TestCase):
 
     @parameterized.expand([
         ('veni', 3, 12, 'xyzk'),
-        ('xyz', 3, 32, 'xad')
+        ('xyz', 3, 32, 'xad'),
+        ('XYZ', 3, 32, 'XAD')
     ])
 
     def test_affine_3_12_VENI(self, text, a, b, cipher):

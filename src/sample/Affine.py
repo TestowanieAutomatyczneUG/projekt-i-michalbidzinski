@@ -6,6 +6,10 @@ class Affine:
     def affine_encrpyt(self, text ,a, b ):
         cipher = ''
         for i in text:
-            index = ((self.alphabet.index(i) * a )+ b) % len(self.alphabet)
-            cipher += self.alphabet[index]
+            if i.isupper():
+                index = ((self.alphabet.index(i.lower()) * a )+ b) % len(self.alphabet)
+                cipher += (self.alphabet[index]).upper()
+            else:
+                index = ((self.alphabet.index(i) * a) + b) % len(self.alphabet)
+                cipher += self.alphabet[index]
         return cipher
