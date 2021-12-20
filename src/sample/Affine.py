@@ -5,7 +5,11 @@ class Affine:
 
     def affine_encrpyt(self, text ,a, b ):
         cipher = ''
+        if not (isinstance(text, str)):
+            raise Exception
         for i in text:
+            if i.lower() not in self.alphabet and i != ' ':
+                raise Exception
             if i.isupper() and i != ' ':
                 index = ((self.alphabet.index(i.lower()) * a )+ b) % len(self.alphabet)
                 cipher += (self.alphabet[index]).upper()

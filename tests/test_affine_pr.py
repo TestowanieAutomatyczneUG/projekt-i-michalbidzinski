@@ -36,4 +36,17 @@ class Affine_test_parameterized(unittest.TestCase):
     def test_affine_sentences(self, text, a, b, cipher):
         self.assertEqual(self.temp.affine_encrpyt(text, a, b), cipher)
 
+    @parameterized.expand([
+        ('123', 3, 12, Exception),
+        (',&!2@;.xxxz', 3, 12, 'akrmn oakysky'),
+        (1, 3, 12, 'AYOCTGSH OAKMR'),
+        (str, 3, 12, 'mtm wm qcrm qcr wm MTY'),
+        ([], 3, 12, 'mtm wm qcrm qcr wm MTY'),
+        ({}, 3, 12, 'mtm wm qcrm qcr wm MTY'),
+        (None, 3, 12, 'mtm wm qcrm qcr wm MTY'),
+        (True, 3, 12, 'mtm wm qcrm qcr wm MTY'),
+    ])
+    def test_affine_wrong_text_provided(self, text, a, b, cipher):
+        self.assertRaises(Exception, self.temp.affine_encrpyt, text, a,b,cipher)
+
 
