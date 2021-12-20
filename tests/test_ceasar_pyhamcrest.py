@@ -61,7 +61,42 @@ class TestCeasar(unittest.TestCase):
     def test_ceasar_decryp_last_3_letters_lowercase(self):
         assert_that(self.temp.decrypt('xyz'), equal_to('uvw'))
 
- 
+    def test_ceasar_decrypt_whole_alphabet(self):
+        assert_that(self.temp.decrypt('ABCDEFGHIJKLMNOPQRSTUVWXYZ'), equal_to('XYZABCDEFGHIJKLMNOPQRSTUVW'))
+    def test_ceasar_decrypt_whole_alphabet_lowercase(self):
+        assert_that(self.temp.decrypt('abcdefghijklmnopqrstuvxyz'), equal_to('xyzabcdefghijklmnopqrsuvw'))
+    def test_ceasar_decrypt_sentence(self):
+        assert_that(self.temp.decrypt('hello world'), equal_to('ebiil tloia'))
+    def test_ceasar_decrypt_sentence_2(self):
+        assert_that(self.temp.decrypt('ala ma kota'), equal_to('xix jx hlqx'))
+    def test_ceasar_decrypt_with_multiple_spaces(self):
+        assert_that(self.temp.decrypt('ala     ma   kota'), equal_to('xix     jx   hlqx'))
+    # exceptions
+    def test_ceasar_decrypt_not_in_alphabet(self):
+        assert_that(calling(self.temp.decrypt).with_args('2'), raises(Exception))
+
+    def test_ceasar_decrypt_None(self):
+        assert_that(calling(self.temp.decrypt).with_args(None), raises(Exception))
+
+    def test_ceasar_decrypt_True(self):
+        assert_that(calling(self.temp.decrypt).with_args(True), raises(Exception))
+
+    def test_ceasar_decrypt_False(self):
+        assert_that(calling(self.temp.decrypt).with_args(False), raises(Exception))
+
+    def test_ceasar_decrypt_arr(self):
+        assert_that(calling(self.temp.decrypt).with_args([]), raises(Exception))
+
+    def test_ceasar_decrypt_obj(self):
+        assert_that(calling(self.temp.decrypt).with_args({}), raises(Exception))
+
+    def test_ceasar_decrypt_int(self):
+        assert_that(calling(self.temp.decrypt).with_args(3), raises(Exception))
+
+    def test_ceasar_decrypt_float(self):
+        assert_that(calling(self.temp.decrypt).with_args(3.14), raises(Exception))
+
+
 
 
 

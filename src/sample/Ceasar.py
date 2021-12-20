@@ -38,14 +38,14 @@ class Ceasar:
                 raise Exception
 
             if i.isupper() and i != ' ':
-                if self.alphabet.index(i.lower()) <= 3:
+                if self.alphabet.index(i.lower()) <= 2:
                     index = self.alphabet.index(i.lower()) + 23
                     decrypted_text += (self.alphabet[index]).upper()
                 else:
                     index = self.alphabet.index(i.lower()) - 3
                     decrypted_text += (self.alphabet[index]).upper()
             elif i.islower() and i != ' ':
-                if self.alphabet.index(i.lower()) <= 3:
+                if self.alphabet.index(i.lower()) <= 2:
                     index = self.alphabet.index(i.lower()) + 23
                     decrypted_text += (self.alphabet[index])
                 else:
