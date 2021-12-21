@@ -2,6 +2,7 @@ import unittest
 from src.sample.Ceasar import Ceasar
 import json
 
+
 class CeasarTestFromFile(unittest.TestCase):
     def test_Ceasar_encrypt_from_jsonFile(self):
         # data = open("../data/data.json")
@@ -45,6 +46,7 @@ class CeasarTestFromFile(unittest.TestCase):
             line = lines.split(" ")
             input = line[0]
             self.assertRaises(Exception, ceasar.encrypt, input)
+
     def test_ceasar_encrypt_from_csv_file(self):
         with open("C:/Users/mbidz/PycharmProjects/projekt-i-michalbidzinski/data/data.csv") as f:
             data = f.read().split('\n')
@@ -53,9 +55,3 @@ class CeasarTestFromFile(unittest.TestCase):
             line = record.split(",")
             input, output = line[0], line[1].strip("\n")
             self.assertEqual(ceasar.encrypt(input), output)
-
-
-
-
-
-
