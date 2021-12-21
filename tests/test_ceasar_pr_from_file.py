@@ -45,4 +45,16 @@ class CeasarTestFromFile(unittest.TestCase):
             line = lines.split(" ")
             input = line[0]
             self.assertRaises(Exception, ceasar.encrypt, input)
+    def test_ceasar_encrypt_from_csv_file(self):
+        with open("C:/Users/mbidz/PycharmProjects/projekt-i-michalbidzinski/data/data.csv") as f:
+            data = f.read().split('\n')
+        ceasar = Ceasar()
+        for record in data[1:]:
+            line = record.split(",")
+            input, output = line[0], line[1].strip("\n")
+            self.assertEqual(ceasar.encrypt(input), output)
+
+
+
+
 
