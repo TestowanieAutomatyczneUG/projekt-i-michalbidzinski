@@ -7,7 +7,7 @@ from src.sample.Ceasar import Ceasar
 # wlasny matcher  sprawdzajacy czy input jest stringiem i sklada sie z litr alfabetu
 def check_if_input_is_a_string_and_contains_alpha_letters(self, tekst):
     if type(self.val) == str:
-        if (self.val).isalpha():
+        if self.val.isalpha():
             return self.val
         else:
             return self.error("Nie składa sie tylko z  liter alfabetu")
@@ -26,6 +26,9 @@ class TestCeasar(unittest.TestCase):
     def test_ceasar_check_if_input_is_a_string_and_contains_alpha_letters(self):
         input = 'hej'
         assert_that(self.temp.encrypt(input)).check_if_input_is_a_string_and_contains_alpha_letters(input)
+    def test_ceasar_check_if_input_is_a_string_and_contains_alpha_letters_2(self):
+        input = 'hej'
+        assert_that(self.temp.encrypt(input)).check_if_input_is_a_string_and_contains_alpha_letters(input)
 
     # ENCRPYT
     def test_ceasar_letter(self):
@@ -41,7 +44,7 @@ class TestCeasar(unittest.TestCase):
         assert_that(self.temp.encrypt('XYZ'), equal_to('ABC'))
 
     def test_ceasar_last_3_letters_lowercase(self):
-        assert_that(self.temp.encrypt('xyz'), equal_to('abc'))
+        assert_that(self.temp.encrypt('xYz'), equal_to('aBc'))
 
     def test_ceasar_whole_alphabet(self):
         assert_that(self.temp.encrypt('ABCDEFGHIJKLMNOPQRSTUVWXYZ'), equal_to('DEFGHIJKLMNOPQRSTUVWXYZABC'))
@@ -50,14 +53,13 @@ class TestCeasar(unittest.TestCase):
         assert_that(self.temp.encrypt('abcdefghijklmnopqrstuvxyz'), equal_to('defghijklmnopqrstuvwxyabc'))
 
     def test_ceasar_sentence(self):
-        assert_that(self.temp.encrypt('hello world'), equal_to('khoor zruog'))
+        assert_that(self.temp.encrypt('hellO woRld'), equal_to('khooR zrRog'))
 
     def test_ceasar_sentence_2(self):
         assert_that(self.temp.encrypt('ala ma kota'), equal_to('dod pd nrwd'))
 
     def test_ceasar_with_multiple_spaces(self):
         assert_that(self.temp.encrypt('ala     ma   kota'), equal_to('dod     pd   nrwd'))
-
 
     # ENCRPYT exceptions
     def test_ceasar_not_in_alphabet(self):

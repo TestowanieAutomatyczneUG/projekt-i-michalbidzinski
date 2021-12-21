@@ -1,13 +1,29 @@
-
 import unittest
 from src.sample.Morse import *
 from assertpy import *
 # własny matcher
+import re
+
+
 def check_if_morse_has_more_dots_than_dashes(self, text):
     if self.val.count(".") > self.val.count("-"):
         return self
-    return  self.error("Jest więcej lub porówno kropek co kresek w kodzie morsa")
+    return self.error("Jest więcej lub porówno kropek co kresek w kodzie morsa")
 
+
+def check_if_decrypted_morse_is_uppercase_and_has_nums_and_special_makrs(self, str):
+    regex = ("(?=." +
+             "*[A-Z])(?=.*\\d)" +
+             "(?=.*[-+_!@$%^&*., ?]).+$")
+    p = re.compile(regex)
+
+    if re.search(p, self.val):
+        return self
+    else:
+        return self.error("Rozszyfrowana wiadomosc nie ma albo liczb albo znakow interpunkcyjnych")
+
+
+add_extension(check_if_decrypted_morse_is_uppercase_and_has_nums_and_special_makrs)
 add_extension(check_if_morse_has_more_dots_than_dashes)
 
 
@@ -15,16 +31,41 @@ add_extension(check_if_morse_has_more_dots_than_dashes)
 class TestMorse(unittest.TestCase):
     def setUp(self):
         self.temp = Morse()
+
     # własny matcher
     def test_morse_check_if_morse_has_more_dots_than_dashes(self):
+        #     morse = ".... . .--- "
         inputed_data = 'hej'
         assert_that(self.temp.coding(inputed_data)).check_if_morse_has_more_dots_than_dashes(inputed_data)
-    def test_morse_hej(self):
-        morse = ".... . .--- "
-        inputed_data = "hej"
-        self.assertEqual(morse, self.temp.coding(inputed_data))
 
-    ## main program
+    def test_morse_check_if_morse_has_more_dots_than_dashes_2(self):
+        # morse = ".-... .----. .--.-. -.--.- -.--. ---... --..-- -...- -.-.-- .-.-.- -....- .-.-. .-..-. ..--.. -..-. "
+        inputed_data = "&'@)(:,=!.-+\"?/"
+        assert_that(self.temp.coding(inputed_data)).check_if_morse_has_more_dots_than_dashes(inputed_data)
+
+    def test_morse_check_if_morse_has_more_dots_than_dashes_3_sentence(self):
+        inputed_data = 'hej hej hej '
+        assert_that(self.temp.coding(inputed_data)).check_if_morse_has_more_dots_than_dashes(inputed_data)
+
+    def test_morse_check_if_morse_has_more_dots_than_dashes_number(self):
+        inputed_data = '4'
+        assert_that(self.temp.coding(inputed_data)).check_if_morse_has_more_dots_than_dashes(inputed_data)
+
+    def test_morse_check_if_morse_has_more_dots_than_dashes_number_lk(self):
+        inputed_data = 'lk'
+        assert_that(self.temp.coding(inputed_data)).check_if_morse_has_more_dots_than_dashes(inputed_data)
+
+    def test_morse_check_if_morse_has_upper_case_nums_and_special_marks_word(self):
+        morse = ".... . .-.. .-.. --- .-- --- .-. .-.. -.. .---- ..--- ...-- .--.-."
+        assert_that(self.temp.decoding(morse)).check_if_decrypted_morse_is_uppercase_and_has_nums_and_special_makrs(
+            morse)
+
+    def test_morse_check_if_morse_has_upper_case_nums_and_special_marks_sentence(self):
+        morse = ".... .. .--.-.     .-- .---- - ....- --"
+        assert_that(self.temp.decoding(morse)).check_if_decrypted_morse_is_uppercase_and_has_nums_and_special_makrs(
+            morse)
+
+    # main program
     def test_morse_single_letter(self):
         morse = ".- "
         inputed_data = "A"
