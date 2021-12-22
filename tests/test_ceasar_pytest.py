@@ -75,3 +75,4 @@ class TestCeasarPytest(unittest.TestCase):
     def test_decrypt_raise_exception_when_str_not_in_alphabet(self):
         with pytest.raises(Exception):
             self.temp.decrypt('2')
+
