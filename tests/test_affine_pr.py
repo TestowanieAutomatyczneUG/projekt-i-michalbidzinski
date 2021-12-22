@@ -110,6 +110,7 @@ class Affine_test_parameterized(unittest.TestCase):
         ('witaj swiecie', 3, []),
         ('witaj swiecie', -3, -3),
         ('witaj swiecie', -1, -2),
+        ('witaj swiecie', 2, 16),
     ])
     def test_affine_decypher_wrong_a_or_b(self, text, a, b):
         self.assertRaises(Exception, self.temp.affine_decrpyt, text, a, b)
