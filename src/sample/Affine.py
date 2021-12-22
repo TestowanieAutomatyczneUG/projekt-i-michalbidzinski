@@ -6,10 +6,10 @@ class Affine:
     def affine_encrpyt(self, text, a, b):
         cipher = ''
         if not isinstance(a, int) or not isinstance(b, int) or a < 0 or b < 0:
-            raise Exception
+            raise TypeError
 
         if not (isinstance(text, str)):
-            raise Exception
+            raise TypeError
         for i in text:
             if i.lower() not in self.alphabet and i != ' ':
                 raise Exception
@@ -43,10 +43,10 @@ class Affine:
         a_inv = modinv(a, len(self.alphabet))
         decrypted_message = ''
         if not isinstance(a, int) or not isinstance(b, int) or a < 0 or b < 0:
-            raise Exception
+            raise TypeError
 
         if not (isinstance(text, str)):
-            raise Exception
+            raise TypeError
         for i in text:
             if i.lower() not in self.alphabet and i != ' ':
                 raise Exception
