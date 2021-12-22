@@ -76,6 +76,13 @@ class TestMorse(unittest.TestCase):
         inputed_data = "woda"
         self.assertEqual(morse, self.temp.coding(inputed_data))
 
+    def test_morse_word_new_line(self):
+        morse = ".-- ---" \
+                " -.. .- "
+        inputed_data = "wo" \
+                       "da"
+        self.assertEqual(morse, self.temp.coding(inputed_data))
+
     def test_morse_word_2(self):
         morse = ".... --- .--. "
         inputed_data = "hop"
